@@ -12,6 +12,7 @@ import SignIn from '../authentication/user-auth/sign-in.component.jsx';
 import SignUp from '../authentication/user-auth/sign-up.component.jsx';
 import Checkout from '../../cartServices/checkout/checkout.component.jsx';
 import { AcceptTerms } from '../authentication/seller-auth/accept-terms.jsx';
+import { Help } from '../help/help.component.jsx';
 
 const Home = () => {
   return (
@@ -32,6 +33,7 @@ const Home = () => {
           element={<ProtectedSellerRoute element={<AcceptTerms />} />}
         />
         <Route path="seller/:seller" element={<BrandCollection />} />
+        <Route path="help" element={<Help />} />
       </Route>
     </Routes>
   );

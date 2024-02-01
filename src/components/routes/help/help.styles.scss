@@ -1,0 +1,102 @@
+.formWidth {
+  width: 100%;
+  margin: auto;
+}
+
+.help-container { 
+  padding-top: 4rem;
+  text-align: left;
+  padding-bottom: 8rem;
+}
+.help-heading h3{
+  font-size: 18px;
+}
+
+.helpCenter {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.fixed-width-button {
+  width: 150px; 
+  text-align: center;
+  margin-top: 2rem;
+}
+.helpList ul {
+  list-style-type: none;
+  padding: 0;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  border-left: 2px solid #ccc; 
+}
+
+.helpList li {
+  padding-left: 10px; 
+  margin-bottom: 10px; 
+}
+
+.helpList li:hover {
+  background-color: #f0f0f0; 
+}
+
+.helpListCard{
+  background: white;
+  box-shadow: #ccc inset;
+  padding: 2rem;
+}
+
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Laptop styles */
+  .formWidth {
+    width: 50%;
+    margin: auto;
+  }
+  .helpListCard{
+    padding-left: 5rem;
+  }
+  .help-heading h3{
+    font-size: 32px;
+  } 
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1200px) {
+  /* Desktop styles */
+  .formWidth {
+    width: 50%;
+    margin: auto;
+  }
+  .fixed-width-button {
+    width: 200px; 
+  }
+  .helpListCard{
+    padding-left: 5rem;
+  }
+  .help-heading h3{
+    font-size: 32px;
+  }
+  
+}
+
+@media only screen and (min-width: 1201px) {
+  /* Large screen styles */
+  .formWidth {
+    width: 50%;
+    margin: auto;
+  }
+  .fixed-width-button {
+    width: 200px; 
+  } 
+  .helpListCard{
+    padding-left: 5rem;
+  }
+  .help-heading h3{
+    font-size: 32px;
+  }
+
+}
