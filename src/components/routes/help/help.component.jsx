@@ -55,7 +55,7 @@ export const Help = () => {
             <Row>
               <Col>
                 <Button variant="outline-secondary" className="fixed-width-button">
-                  Get Help With Your Order
+                  Track Your Order
                 </Button>
               </Col>
               <Col>
@@ -65,7 +65,7 @@ export const Help = () => {
               </Col>
               <Col>
                 <Button variant="outline-secondary" className="fixed-width-button">
-                  Shopping and Delivery
+                  Speak With An Agent 
                 </Button>
               </Col>
             </Row>
