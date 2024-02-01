@@ -19,7 +19,7 @@ export const Help = () => {
       <div className="card container help-container">
         <div className="p-4 text-center">
           <section className="help-heading">
-            <h3>Welcome to Afro Shop Support</h3>
+            <h3>Welcome to Afro Fashion Support</h3>
             <p>We're here to help</p>
             <Form className="formWidth">
               <InputGroup className="mb-4 mt-4">

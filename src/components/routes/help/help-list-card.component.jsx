@@ -5,10 +5,10 @@ export const HelpListCard = () => {
   return (
     <section className="helpListCard">
      <div id="getting-started">
-       <h4>Getting Started With AfroShop</h4>
-      <h5>What is AfroShop</h5>
+       <h4>Getting Started With Afro Fashion</h4>
+      <h5>What is Afro Fashion</h5>
       <p>
-        AfroShop is a complete e-commerce platform that lets you start, grow,
+        Afro Fashion is a complete e-commerce platform that lets you start, grow,
         and manage your business.
       </p>
       <p>Create and customize an online store</p>
@@ -18,7 +18,7 @@ export const HelpListCard = () => {
       </p></div>
      <div id="selling">
      <br />
-      <h4>Selling on AfroShop</h4>
+      <h4>Selling on Afro Fashion</h4>
       <h5>What do I need to start selling on Shopify?</h5>
       <p>
         To start selling on Shopify, you&apos;ll need a Shopify plan and
@@ -36,7 +36,7 @@ export const HelpListCard = () => {
       <br />
       <div id="buying">
         {" "}
-        <h4>Buying on AfroShop</h4>
+        <h4>Buying on Afro Fashion</h4>
         <h5>What do I need to start selling on Shopify?</h5>
         <p>
           To start selling on Shopify, you&apos;ll need a Shopify plan and
@@ -54,7 +54,7 @@ export const HelpListCard = () => {
       </div>
       <br />
       <div id="shipping">
-        <h4>Shipping with AfroShop</h4>
+        <h4>Shipping with Afro Fashion</h4>
         <h5>What do I need to start selling on Shopify?</h5>
         <p>
           To start selling on Shopify, you&apos;ll need a Shopify plan and
@@ -71,7 +71,7 @@ export const HelpListCard = () => {
       </div>
       <br />
       <div id="payments">
-        <h4>Payment on AfroShop</h4>
+        <h4>Payment on Afro Fashion</h4>
         <h5>What do I need to start selling on Shopify?</h5>
         <p>
           To start selling on Shopify, you&apos;ll need a Shopify plan and
@@ -88,7 +88,7 @@ export const HelpListCard = () => {
       </div>
       <br />
       <div id="shipping">
-        <h4>Shipping with AfroShop</h4>
+        <h4>Shipping with Afro Fashion</h4>
         <h5>What do I need to start selling on Shopify?</h5>
         <p>
           To start selling on Shopify, you&apos;ll need a Shopify plan and
