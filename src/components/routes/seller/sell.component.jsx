@@ -4,6 +4,7 @@ import { SellerCreateCard } from "./s-create-card";
 import { SellerProducts } from "./s-products-card";
 import { useState, useContext } from 'react';
 import { Container } from "react-bootstrap";
+import {  SellerProfileCard } from "./s-profile-card"
 
 import "./seller.styles.scss";
 
@@ -32,11 +33,10 @@ const Seller = () => {
             <span className="-date">{today}</span>
           </div>
           <hr/>
-  
-          <div className="profile-card">
-            {/* <SellerProfileCard /> */}
-          </div>
-
+          <section>
+          <SellerProfileCard  sellerName={sellerName}/>
+          </section>
+         <br /><br />
           <section id="upload">
             <Button onClick={toggleCreateItem}>
               Upload a new Product!
