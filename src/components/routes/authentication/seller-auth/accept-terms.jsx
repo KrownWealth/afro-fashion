@@ -41,7 +41,7 @@ export const AcceptTerms = () => {
 
   const handleAgreeButtonClick = async () => {
     const allChecked =
-      Object.values(isChecked).filter((value) => value === true).length === 5;
+      Object.values(isChecked).filter((value) => value === true).length === 6;
 
     if (allChecked) {
       addAlert("info", 'Verification link sent... Verify your account to commence commerce!');

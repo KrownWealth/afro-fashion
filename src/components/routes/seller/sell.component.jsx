@@ -15,7 +15,7 @@ const Seller = () => {
   const [ createItem, setCreateItem ] = useState(false);
   const [ editItem, setEditItem]  = useState(false);
   const { currentUser } = useContext(UserContext);
-  const sellerName = currentUser?.displayName;
+  const {displayName, email, phone, address, avatarUrl } = currentUser
 
   const toggleCreateItem = () => {
     setCreateItem(!createItem);
@@ -29,12 +29,12 @@ const Seller = () => {
      <Container className="mt-2">
         <div className="card p-1 col-md-6 mx-auto bg-gray">
           <div className="card-title mt-3 mb-2">
-            <span className="-welcome">Welcome, {sellerName}</span>
+            <span className="-welcome">Welcome, {displayName}</span>
             <span className="-date">{today}</span>
           </div>
           <hr/>
           <section>
-          <SellerProfileCard  sellerName={sellerName}/>
+          <SellerProfileCard sellerName={displayName} email={email} phone={phone} address={address} avatarUrl={avatarUrl}/>
           </section>
          <br /><br />
           <section id="upload">
@@ -50,7 +50,7 @@ const Seller = () => {
             Edit an existing Product!
             </Button>
             <div className="p-1">
-              {editItem && <SellerProducts sellerName={sellerName} />}
+              {editItem && <SellerProducts sellerName={displayName} />}
             </div>
           </section>
         </div>
