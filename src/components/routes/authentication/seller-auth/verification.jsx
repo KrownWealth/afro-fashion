@@ -5,11 +5,13 @@ const auth = getAuth();
 const actionCodeSettings = {
   // URL you want to redirect back to. The domain (www.example.com) for this
   // URL must be in the authorized domains list in the Firebase Console.
-  url: 'https://www.afrofashion.pro',
+  url: 'https://www.afrofashionng.netlify.app',
+  // url: 'https://www.afrofashion.pro',
+
   // This must be true.
   handleCodeInApp: true,
-
-  dynamicLinkDomain: 'https://www.afrofashion.pro'
+  dynamicLinkDomain: 'https://www.afrofashionng.netlify.app/seller'
+  // dynamicLinkDomain: 'https://www.afrofashion.pro'
 };
 
 export const sendVerification = (email) => {
@@ -19,12 +21,11 @@ export const sendVerification = (email) => {
     // Save the email locally so you don't need to ask the user for it again
     // if they open the link on the same device.
     window.localStorage.setItem('emailForSignIn', email);
-    // ...
   })
   .catch((error) => {
     // const errorCode = error.code;
-    // const errorMessage = error.message;
-    // ...
+    const errorMessage = error.message;
+    console.log(errorMessage);
   });
 }
 

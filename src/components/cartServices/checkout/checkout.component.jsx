@@ -2,11 +2,11 @@ import './checkout.styles.scss';
 import { useContext } from 'react';
 
 import CheckoutContent from './checkout';
+import GetExchangeRate from '../../../utils/rate.utils';
 import { CartContext } from '../../../contexts/cart.context';
 
 
 const Checkout = () => {
-
   const { cartItems } = useContext(CartContext);
 
   /*  calculating checkout total 
@@ -18,7 +18,8 @@ const Checkout = () => {
       (total, itemTotal) => total + itemTotal, 0
     )
 
-  let USDtoNGNRate = 1100;
+  const todaysBMRate = GetExchangeRate() + 400;
+  let USDtoNGNRate = (todaysBMRate) || 1600;
   const cartTotalinNaira = cartTotal * USDtoNGNRate;
 
   return (

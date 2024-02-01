@@ -26,11 +26,11 @@ export const categories = [
     id: 4,
     title: "Jerseys",
     imageUrl: 'https://images.unsplash.com/photo-1616124619460-ff4ed8f4683c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbmNoZXN0ZXIlMjB1bml0ZWQlMjBqZXJzZXl8ZW58MHx8MHx8fDA%3D',
-    route: 'shop/jersey',
+    route: 'shop/jerseys',
   },
   {
     id: 5,
-    title: 'Hats & Head gears',
+    title: 'Hats & Head Gears',
     imageUrl: 'https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fGhhdHMlMjBhbmQlMjBiZWFuaWVzfGVufDB8fDB8fHww',
     route: 'shop/hats',
   },
