@@ -95,8 +95,8 @@ export const UserProfileCard = ({ name, phone, address, imageUrl }) => {
             />
           </Col> 
 
-          <div className="flex-just-center mb-2">
-            <div>
+          <div className="flex-just-center mb-2 p-2">
+            <div className="m-1">
 	            <input 
                 onChange={handleImgChange}
                 accept=".jpg, .jpeg, .png"
