@@ -1,8 +1,7 @@
 const CreditsPage = () => {
   return (
-    <>
       <>
-        <div className="card p-2 mt-1 mb-2">
+        <div className="card p-2 mb-2">
           <div className="card-title">
             <h3 className="text-center mx-auto mt-2 bg-ws p-3">Credits</h3>
           </div>
@@ -17,11 +16,11 @@ const CreditsPage = () => {
                 <p>Special thanks to the following platforms:</p>
                 <ul>
                   <li>
-                    <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer"><b>Unsplash</b>:</a>{" "}
+                    <a className="s-bold" href="https://unsplash.com"><u>Unsplash</u>:</a>{" "}
                     Generous community of photographers providing high-quality, royalty-free images that breathe life into this project.
                   </li>
                   <li>
-                    <a href="https://istockphoto.com" target="_blank" rel="noopener noreferrer"><b>iStockPhoto</b>:</a>{" "}
+                    <a className="s-bold" href="https://istockphoto.com"><u>iStockPhoto</u>:</a>{" "}
                     Premium source for stock photos, illustrations, and videos that enhance the visual appeal of this application.
                   </li>
                   <li>Any other mentions we may be forgetting – We deeply appreciate the contributions from all other sources that have played a role in creating the visual experience of this application.</li>
@@ -38,19 +37,18 @@ const CreditsPage = () => {
               </div>
 
               <p>
-                This app was developed by <a href="https://github.com/gicodes" target="_blank" rel="noopener noreferrer">
-                <b>Gideon Iduma</b>
-                </a> in collaboration with  <a href="https://github.com/KrownWealth" target="_blank" rel="noopener noreferrer">
-                <b>Adeola Abdulramon</b>
+                This app was developed by <a className="s-bold" href="https://github.com/gicodes" target="_blank" rel="noopener noreferrer">
+                Gideon Iduma
+                </a> in collaboration with  <a className="s-bold" href="https://github.com/KrownWealth" target="_blank" rel="noopener noreferrer">
+                Adeola Abdulramon
                 </a>.
               </p>
-              <span>You can find more about this Project from the  <a href="https://github.com/gicodes/afro-fashion" target="_blank" rel="noopener noreferrer">
-                  <b>source code</b>
+              <span>You can find more about this Project from the  <a className="s-bold" href="https://github.com/gicodes/afro-fashion" target="_blank" rel="noopener noreferrer">
+              source code
                 </a>.</span>
             </div>
           </div>
         </div>
-      </>
     </>
   );
 };

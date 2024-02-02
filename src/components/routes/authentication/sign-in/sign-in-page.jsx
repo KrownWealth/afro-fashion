@@ -19,8 +19,13 @@ const SignInForm = () => {
 
   const { email, password } = formFields;
   const resetFormFields = () => { setFormFields(defaultFormFields) }
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormFields({ ...formFields, [name]: value });
+  }
   
-  let path = '/shop'; 
+  let path = '/'; 
 
   const HandleSubmit = async (event) => {
     event.preventDefault()
@@ -30,12 +35,13 @@ const SignInForm = () => {
       await signInWithEmail(email, password);
 
       resetFormFields();
-      addAlert("success", 'Signed in successfully. Happy Shopping!!!')
+      addAlert("success", 'Welcome back to Afro Fashion!  :) ')
       
       hideLoading();
       navigate(path);
     } catch (error) {
       hideLoading();
+
       switch (error.code) {
         case 'auth/user-not-found':
           addAlert("danger", 'User not found!')
@@ -46,11 +52,6 @@ const SignInForm = () => {
         default: addAlert("danger", 'Something went wrong!!!');
       }
     }
-  }
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormFields({ ...formFields, [name]: value });
   }
 
   return (

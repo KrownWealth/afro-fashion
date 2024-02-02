@@ -1,21 +1,22 @@
 /* This is a Mobile first Component. Designed to render on mobile devices and smaller screen sizes */
 
-import { Fragment, useContext, useState } from "react";
-import { Outlet, Link } from "react-router-dom";
-
-import { Container, Navbar } from "react-bootstrap";
-import { LuLogIn, LuUserCheck } from "react-icons/lu";
-import { UserContext } from "../../../contexts/user.context";
-
-import { SignOutUser } from "../../../utils/firebase.utils";
-import CartIcon from "../../cartServices/cart-icon/cart-icon.components";
 import CartDropdown from "../../cartServices/cart-dropdown/mobile.cart-dropdown";
-
+import CartIcon from "../../cartServices/cart-icon/cart-icon.components";
+import { Outlet, Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../../contexts/user.context";
+import { SignOutUser } from "../../../utils/firebase.utils";
+import { useAlert } from "../../../contexts/alert.context";
+import { Fragment, useContext, useState } from "react";
+import { LuLogIn, LuUserCheck } from "react-icons/lu";
+import { Container, Navbar } from "react-bootstrap";
 import BurgerMenu from './mobile.navdrop';
 import { SideNav } from "./side-nav";
+
 import './navbar.styles.scss'
 
 const MobileNavBar = () => {
+  const navigate = useNavigate();
+  const { addAutoCloseAlert } = useAlert();
   const { currentUser } = useContext(UserContext);
   const [ isBurger, setBurger ] = useState(false);
   const [ cartOpen, setCartOpen ] = useState(false);
@@ -49,6 +50,14 @@ const MobileNavBar = () => {
   const handleSideNav = () => {
     setShowSideNav(!showSideNav);
   };
+
+  const handleSignOut = (event) => {
+    event.preventDefault();
+    addAutoCloseAlert("warning", 'You are signed out! see you again :(')
+
+    SignOutUser();
+    navigate('/auth')
+  }
 
   return (
     <Fragment>
@@ -104,7 +113,7 @@ const MobileNavBar = () => {
           {showSideNav && (
             <SideNav
               displayName={currentUser?.displayName}
-              onSignOut={SignOutUser}
+              onSignOut={handleSignOut}
             />
           )}
           </div>

@@ -25,7 +25,7 @@ const Category = () => {
 
   return (
     <>
-      <section id={category.toLowerCase()} className='y-m lr-margin'>
+      <section id={category.toLowerCase()} className='mt-1 lr-margin'>
         <Container className="card bg-ws lr-padding">
           <h1 className='category-title y-p'>
             <span className='bg-gw p-2'>{category.toUpperCase()}</span>

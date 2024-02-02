@@ -28,7 +28,7 @@ const Collections = () => {
       {!hasProducts && (
         <div className="mt-2 card container bg-ws">
           <hr className='-mt'/>
-          <p className='mx-auto'>No product is available now... Please try again later</p>
+          <p className='mx-auto'>No product available now... Try again later</p>
         </div>
       )}
     </>

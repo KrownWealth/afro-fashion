@@ -1,8 +1,8 @@
+import { useState } from "react";
 import FormField from "./form.component";
 import { Container } from "react-bootstrap";
-import { useState, useEffect } from "react";
-import Button from '../../../buttons/button.component'
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Button from '../../../buttons/button.component';
 import { useAlert } from "../../../../contexts/alert.context";
 import { useLoading } from '../../../../contexts/loading.context';
 import { RadioGroup, FormControlLabel, Radio } from "@mui/material";
@@ -12,27 +12,13 @@ import { logGoogleUser } from "../user-auth/logGoogle";
 
 // This component embodies the first creation of sign-up (logic and UI) before rendering on other components
 const SignUp = () => {
-  const location = useLocation();
   const navigate = useNavigate();
   const [ buyer, setBuyer ] = useState(true);
   const addAlert = useAlert().addAutoCloseAlert;
   const { showLoading, hideLoading } = useLoading();
-  
-  useEffect(() => {
-    // determine if user clicked seller route and...
-    if (location.hash === '#seller') {
-      setBuyer(false); //... set user to seller
-    } else {
-      setBuyer(true);
-    }
-
-    return () => {
-      setBuyer(true);
-    };
-  }, [location.hash]);
 
   const defaultFormFields = {
-    userType: '',
+    userType: buyer ? 'buyer' : 'seller',
     displayName: '',
     email: '',
     phone: '',
@@ -61,11 +47,11 @@ const SignUp = () => {
   
   let userPath = '/auth', sellerPath = '/seller/accept-terms'
 
-  const handleSuccessNavigate = (path)=> navigate(path)
+  const handleSuccessNavigate = (path) => navigate(path)
 
   const HandleSubmit = async (event) => {
     event.preventDefault()
-
+    
     if (password !== confirmPassword) {
       addAlert("danger", 'Passwords do not match')
       return;
@@ -77,14 +63,14 @@ const SignUp = () => {
       
       if (userType === "seller"){
         resetFormFields();
-        addAlert("info", 'Seller Profile created successfully!');
+        addAlert("info", 'Seller profile created. Continue set up!');
         
         hideLoading();
         handleSuccessNavigate(sellerPath);
         setBuyer(false);
       } else {
         resetFormFields();
-        addAlert("success", 'User created successfully. Go to sign in!');
+        addAlert("success", 'User profile created. Go to sign in!');
         
         hideLoading();
         handleSuccessNavigate(userPath)
@@ -92,14 +78,15 @@ const SignUp = () => {
       }
     } catch (error) {
       hideLoading();
-      switch (error.code) {
-        case 'auth/email-already-in-use':
-          addAlert("danger", 'Error creating user. Email already in use');
-          break
-        case 'auth/weak-password':
-          addAlert("warning", 'Your password must be at least 6 characters');
-          break
-        default: addAlert("danger", 'Failed Operation! Try again...');;
+
+      if (error.message.includes('auth/weak-password')) {
+        addAlert("warning", 'Your password must be at least 6 characters!');
+      } 
+      else
+      if (error.message.includes('auth/email-already-in-use')) {
+        addAlert("danger", 'Failed to register. This email already exists!!');
+      } else {
+        addAlert("danger", 'Failed Operation! Please Try again later!!!');
       }
     }
   }
@@ -119,7 +106,7 @@ const SignUp = () => {
               </div>
 
               <RadioGroup
-                value={buyer ? 'buyer' : 'seller'}
+                value={!buyer ? 'seller' : 'buyer'}
                 onChange={handleChange}
                 name='userType'
               >

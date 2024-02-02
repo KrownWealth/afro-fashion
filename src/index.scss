@@ -70,7 +70,7 @@ a {
 .-mb { margin-bottom: -10px }
 .-mb2 { margin-bottom: -20px }
   
-// negative padding bottom
+  // negative padding bottom
 .-pb { padding-bottom: -10px }
 
 .lr-margin {
@@ -85,11 +85,13 @@ a {
 }
   
 .bl-ordered {
+  // border light 
   border: 1px solid #909090;
   padding: 5%;
 }
 
 .font-awesome {
+  // used in a couple of components
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -99,14 +101,23 @@ a {
 }
 
 .dis-non {
+  // used to hide a div
   display: none;
 }
 
+.v-center {
+  // center along the y axis
+  align-self: center;
+}
+
 // set space at the bottom for large viewports
-.lg-div { height: 120px }  
+.lg-div { height: 120px }
 
 // custom font and color styles
 .fs-smaller { font-size: smaller }
 .fs-tiny { font-size: xx-small }
+.fs-large { font-size: larger }
+
+.s-bold { font-weight: 525 }
 .c-50 { color: #505050 } 
 .c-90 { color: #909090 }

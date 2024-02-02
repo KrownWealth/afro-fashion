@@ -1,18 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './contexts/user.context';
 import { CartProvider } from './contexts/cart.context';
+import { AlertProvider } from './contexts/alert.context';
 import { BrandProvider } from './contexts/brand.context';
 import { LoadingProvider } from './contexts/loading.context';
 import { CategoriesProvider } from './contexts/categories.context';
 
-import App from './App';
 import './index.scss';
-import { AlertProvider } from './contexts/alert.context';
-
+import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

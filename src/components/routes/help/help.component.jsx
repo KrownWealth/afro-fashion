@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Form,
-  Container,
   InputGroup,
   FormControl,
   Button,
@@ -10,17 +9,20 @@ import {
 } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
 import "./help.styles.scss";
-import { HelpList } from "./helplist.component";
+import { HelpList } from "./help-list.component";
 import { HelpListCard } from "./help-list-card.component";
 
 export const Help = () => {
   return (
-    <Container className="no-padding-container">
+    <div className="card p-2 mb-2">
+      <div className="card-title">
+        <h3 className="text-center mx-auto mt-2 bg-ws p-3">Help Desk</h3>
+      </div>
       <div className="card container help-container">
-        <div className="p-4 text-center">
-          <section className="help-heading">
-            <h3>Welcome to Afro Fashion Support</h3>
-            <p>We're here to help</p>
+        <div className="p-3 text-center">
+          <section className="help-heading -mt2">
+            <h3>Welcome to Afro Fashion Docs</h3>
+            <p>We are here to guide you</p>
             <Form className="formWidth">
               <InputGroup className="mb-4 mt-4">
                 <FormControl
@@ -77,6 +79,6 @@ export const Help = () => {
           <HelpListCard />
         </div>
       </div>
-    </Container>
+    </div>
   );
 };

@@ -1,11 +1,11 @@
-import { deleteSellerItem, editSellerItem } from '../../../utils/writeBatch';
-import { useLoading } from '../../../contexts/loading.context';
-import { BrandContext } from '../../../contexts/brand.context';
-import { useAlert } from '../../../contexts/alert.context';
+import { deleteSellerItem, editSellerItem } from '../../../../utils/writeBatch';
+import { useLoading } from '../../../../contexts/loading.context';
+import { BrandContext } from '../../../../contexts/brand.context';
+import { useAlert } from '../../../../contexts/alert.context';
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import './seller.styles.scss';
+import '../seller.styles.scss';
 
 export const SellerProducts = ({ sellerName }) => {
   const navigate = useNavigate();

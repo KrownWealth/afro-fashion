@@ -19,7 +19,7 @@ const BrandCollection = () => {
 
   return (
     // section id issues a brand with a dynamic link to target
-    <section id={seller?.toLowerCase()} className='mt-2'>
+    <section id={seller?.toLowerCase()} className='mt-1'>
       <Container className="card container bg-ws">
         <h1 className='mt-2 bg-gw p-2 mx-auto'>
           <span>{seller?.toUpperCase()}</span>

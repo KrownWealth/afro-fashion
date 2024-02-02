@@ -1,8 +1,6 @@
 /* This is a Mobile first Component. Designed to render on mobile devices and smaller screen sizes */
 
-import { LuBaggageClaim, LuDollarSign, LuHelpCircle,
-  //  LuFileCode 
-  } from "react-icons/lu";
+import { LuBaggageClaim, LuUser2, LuHelpCircle} from "react-icons/lu";
 import { TbLicense } from "react-icons/tb";
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from "react";
@@ -51,11 +49,11 @@ const BurgerMenu = () => {
 
                 <Link 
                   className="menu-list dropdown-item"
-                  aria-current="page" to='seller'
+                  aria-current="page" to='profile'
                   onClick={handleNavDropPostRouting}
                   >
-                  <LuDollarSign className="ml-icon"/>
-                  <span className="ml-title">Seller profile</span>
+                  <LuUser2 className="ml-icon"/>
+                  <span className="ml-title">My profile</span>
                 </Link>
 
                 <Link 
@@ -64,7 +62,7 @@ const BurgerMenu = () => {
                   onClick={handleNavDropPostRouting}
                   >
                   <LuHelpCircle className="ml-icon"/>
-                  <span className="ml-title">Need help?</span>
+                  <span className="ml-title">Help desk</span>
                 </Link>
 
                 <Link 
@@ -75,15 +73,6 @@ const BurgerMenu = () => {
                   <TbLicense className="ml-icon"/>
                   <span className="ml-title">Credits</span>
                 </Link>
-
-                {/* <Link 
-                  className="menu-list dropdown-item" 
-                  aria-current="page" to='developer'
-                  onClick={handleNavDropPostRouting}
-                  >
-                  <LuFileCode className="ml-icon"/>
-                  <span className="ml-title">developer</span>
-                </Link> */}
               </ul>
             </div>
           </div>

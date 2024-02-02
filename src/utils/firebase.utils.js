@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
+
 import {
   doc,
   getDoc,
@@ -16,6 +17,7 @@ import {
   getDocs,
   query,
 } from 'firebase/firestore'
+
 import { firebaseConfig } from './config';
 import { initializeApp } from "firebase/app";
 
@@ -44,9 +46,7 @@ export const signInWithEmail = async (email, password) => {
 }
 
 // Sign out user
-export const SignOutUser = () => { 
- signOut(auth) 
-};
+export const SignOutUser = () => signOut(auth)
 
 // Sign up user with Email and Password
 export const customCreateUserWithEmail = async (
@@ -64,7 +64,7 @@ export const customCreateUserWithEmail = async (
     if (userType === 'seller') {
       const sellerId = userCredential.user.uid;
       const sellerDocRef = doc(db, 'sellers', sellerId);
-      const SellerSnapshot = await getDoc(sellerDocRef)
+      const SellerSnapshot = await getDoc(sellerDocRef);
 
       if (!SellerSnapshot.exists()) {
         try {
@@ -78,16 +78,22 @@ export const customCreateUserWithEmail = async (
         } catch (error) {
           console.error("Error writing seller document: ", error);
         }
-      } else {
-        const userId = userCredential.user.uid;
-        const userDocRef = doc(db, 'users', userId);
+      }
+    } else
+    if (userType === "buyer") { 
+      const userId = userCredential.user.uid;
+      const userDocRef = doc(db, 'users', userId);
+      const UserSnapshot = await getDoc(userDocRef);
 
+      if (!UserSnapshot.exists()) {
         try {
           await setDoc(userDocRef, {
             email,
             createdAt,
             displayName,
-          });
+            phone,
+            userType,
+          }); // ... store userDocRef in firestore
         } catch (error) {
           console.error("Error writing document: ", error);
         }
@@ -95,9 +101,9 @@ export const customCreateUserWithEmail = async (
     }
 
     return userCredential;
-  } catch (err) { 
-    console.error('Error creating user:', err.message);
-    throw new Error(err.message);
+  } catch (error) { 
+    // console.error('Error creating user:', error.message);
+    throw new Error(error.message);
   }
 }
 

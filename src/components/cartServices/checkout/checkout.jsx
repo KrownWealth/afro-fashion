@@ -4,7 +4,6 @@ import { CartContext } from '../../../contexts/cart.context';
 const CheckoutContent = ({ cartItem }) => {
 
   const { addItemtoCart, removeItemfromCart } = useContext(CartContext);
-
   const { imageUrl, imageUrls, name, quantity } = cartItem;
   const itemTotal = cartItem.price * cartItem.quantity;
 

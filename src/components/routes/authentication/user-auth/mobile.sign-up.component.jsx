@@ -9,7 +9,7 @@ import './authentication.scss'
 const MobileSignUp = () => {
   return (
     <>
-      <div className='y-m lr-margin yb-p'>
+      <div className='mt-1 lr-margin yb-p'>
         <SignUpForm />
       </div>
     </>

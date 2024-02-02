@@ -1,6 +1,6 @@
 // seller specific modules and dependencies from writeBatch to firestore
-import { deleteObject, getStorage, ref,  getDownloadURL, uploadBytes } from 'firebase/storage';
-import { collection, doc, getDoc, writeBatch } from "firebase/firestore";
+import { deleteObject, getStorage, getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { collection, doc, getDoc, updateDoc, writeBatch } from "firebase/firestore";
 import { db, firebaseApp } from "./firebase.utils";
 
 const storage = getStorage(firebaseApp);
@@ -58,6 +58,16 @@ export const uploadImages = async (imagesArray, itemId) => {
   }
 
   return imageUrls;
+};
+
+// helper function to upload an image and obtain the image URL
+export const uploadImageAndGetUrl = async (imageFile, itemId) => {
+  const imageRef = ref(storage, `image/${itemId}`);
+
+  await uploadBytes(imageRef, imageFile);
+  const imageUrl = await getDownloadURL(imageRef);
+
+  return imageUrl;
 };
 
 // edit items from a db collection
@@ -147,4 +157,38 @@ const deleteImages = async (itemId, imageUrls) => {
     console.error('Error during image deletion:', err);
     throw new Error(err.message);
   }
+};
+
+
+// Add or update seller properties
+export const updateSeller = async (sellerId, inputField, value) => {
+  if (!sellerId || !inputField || !value) return;
+
+  const collectionId = "sellers";
+
+  try {
+    const sellerRef = doc(collection(db, collectionId), sellerId);
+    const sellerDoc = await getDoc(sellerRef);
+
+    if (sellerDoc.exists()) {
+      const updateObject = {};
+      updateObject[inputField] = value;
+      
+      await updateDoc(sellerRef, updateObject);
+    } 
+  } catch (err) {
+    console.error('Failed to update seller:', err);
+    throw new Error(err.message);
+  }
+};
+
+// Add or update user properties
+export const updateUser = async (userId, inputField, value) => {
+  
+  if (!userId || !inputField || !value) return;
+  
+  await collection('users').doc(userId).set({
+    inputField: value,
+    // add any other user data fields as needed
+  }, { merge: true });
 };

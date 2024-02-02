@@ -29,7 +29,7 @@
 
 }
 
-.theader {  
+.t-header {  
   margin: 2%;
   text-align: center;
   
@@ -46,11 +46,21 @@
   text-align: end;
 }
 
-.payButton {
-  background-color: darkolivegreen;
+.pay-action {
+  width: 100%;
+  display: flex;
+  margin-top: 10px;
   position: absolute;
-  margin-top: 5px;
-  right: 1%;
+  justify-content: space-between;
+
+  .pay-address { background: #909090 }
+
+  .pay-button {
+    margin: 2px;
+    align-self: center;
+    background: #707070;
+    min-width: fit-content;
+  }
 }
 
 .pay-gap {

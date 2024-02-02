@@ -1,13 +1,13 @@
-import { addSellerItems, uploadImages } from '../../../utils/writeBatch';
-import FormField from '../authentication/sign-up/form.component';
-import { useLoading } from '../../../contexts/loading.context';
-import { UserContext } from '../../../contexts/user.context';
-import { useAlert } from '../../../contexts/alert.context';
+import { addSellerItems, uploadImages } from '../../../../utils/writeBatch';
+import FormField from '../../authentication/sign-up/form.component';
+import { useLoading } from '../../../../contexts/loading.context';
+import { UserContext } from '../../../../contexts/user.context';
+import { useAlert } from '../../../../contexts/alert.context';
 import { useNavigate } from "react-router-dom";
 import { Card, Button } from 'react-bootstrap';
 import { useState, useContext } from 'react';
 
-import './seller.styles.scss';
+import '../seller.styles.scss';
 
 const defaultFormFields = {
   category: '',
@@ -82,7 +82,7 @@ export const SellerCreateCard = () => {
 
   return (
     <>
-      <Card className='card no-padding-container y-m mx-auto'> 
+      <Card className='card no-padding-container mx-auto'> 
         <div className='card-header flex-just-center bg-ws'>
           Add a Product to your Collection
         </div>

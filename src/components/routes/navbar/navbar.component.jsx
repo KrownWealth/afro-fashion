@@ -1,21 +1,22 @@
 /* This is a Large-viewport Component. Designed to render on larger devices or screen sizes */
 
+import CartIcon from "../../cartServices/cart-icon/cart-icon.components";
+import CartDropdown from "../../cartServices/cart-dropdown/cart-dropdown";
+import { ReactComponent as Logo } from "../../assets/afro-fa.svg";
 import { React, useContext, useState , Fragment} from "react";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../../contexts/user.context";
 import { CartContext } from "../../../contexts/cart.context";
 import { SignOutUser } from "../../../utils/firebase.utils";
+import { useAlert } from "../../../contexts/alert.context";
 import { Navbar, Container } from 'react-bootstrap';
-import { Outlet, Link } from "react-router-dom";
-import { 
-  // LuFileCode, 
-  LuHelpCircle } from "react-icons/lu";
-import { ReactComponent as Logo } from "../../assets/afro-fa.svg";
-import CartIcon from "../../cartServices/cart-icon/cart-icon.components";
-import CartDropdown from "../../cartServices/cart-dropdown/cart-dropdown";
+import { LuHelpCircle } from "react-icons/lu";
 
 import './navbar.styles.scss'
 
 const NavBarComponent = () => {
+  const navigate = useNavigate();
+  const { addAutoCloseAlert } = useAlert();
   const { isCartOpen } = useContext(CartContext);
   const { currentUser } = useContext(UserContext);
   const [ cartOpen, setCartOpen ] = useState(false);
@@ -25,10 +26,16 @@ const NavBarComponent = () => {
   }
 
   const toggleCart = () => {
-    if (cartOpen) {
-      setCartOpen(false);
-    }
-    else { setCartOpen(true)}
+    if (cartOpen) setCartOpen(false)
+    else setCartOpen(true)
+  }
+
+  const handleSignOut = (event) => {
+    event.preventDefault();
+    addAutoCloseAlert("warning", 'You are signed out! see you again :(')
+
+    SignOutUser();
+    navigate('/auth')
   }
 
   return (
@@ -66,12 +73,14 @@ const NavBarComponent = () => {
                 </li>
 
                 <li className="nav-item">
-                  <span onClick={toggleCart}><CartIcon /></span>
+                  <span onClick={toggleCart}>
+                    <CartIcon />
+                  </span>
                 </li>
 
                 <li className="nav-item">
-                  <Link className="nav-link" to='seller'>
-                    SELL
+                  <Link className="nav-link" to='profile'>
+                    PROFILE
                   </Link>
                 </li>
 
@@ -89,17 +98,11 @@ const NavBarComponent = () => {
                   </Link>
                 </li>
 
-                {/* <li className="nav-item">
-                  <Link className="nav-link" to='developer'>
-                    <span style={{color: "black"}}><LuFileCode /></span>
-                  </Link>
-                </li> */}
-
                 <li className="nav-item" style={authIconStyle}>
                  {
                   currentUser ? (
                     <Link className="nav-link active" aria-current="page"
-                      onClick={SignOutUser}>
+                      onClick={handleSignOut}>
                       LOGOUT
                     </Link>
                   ) : (
