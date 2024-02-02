@@ -59,3 +59,16 @@ body{
     }
   }
 }
+
+.image-upload {
+  display: flex;
+  justify-content: space-around;
+
+  .choose-file {
+    width: 75%;
+  }
+
+  .upload { 
+    width: 25%;
+  }
+}

@@ -94,20 +94,22 @@ export const UserProfileCard = ({ name, phone, address, imageUrl }) => {
               alt="profile avatar"
             />
           </Col> 
-
-          <div className="flex-just-center mb-2">
-            <div className="p-1 m-1">
-	            <input 
-                onChange={handleImgChange}
-                accept=".jpg, .jpeg, .png"
-                id='file-input'
-                name="image"
-                type="file"
-              />
-	          </div>
-            <span onClick={() => handleImgUpload(imgFile)}>
-              <MdUpload size={25}/>
-            </span>
+          
+          <div className="p-1">
+            <div className="image-upload">
+              <div className="choose-file">
+	              <input 
+                  onChange={handleImgChange}
+                  accept=".jpg, .jpeg, .png"
+                  id='file-input'
+                  name="image"
+                  type="file"
+                />
+	            </div>
+              <span onClick={() => handleImgUpload(imgFile)}>
+                <MdUpload size={25}/>
+              </span>
+            </div>
           </div>
 
           <Col className="col-md-10 mx-auto"> 
