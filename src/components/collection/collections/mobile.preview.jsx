@@ -10,7 +10,7 @@ import ProductCard from '../../products/product-card'
 const CollectionPreview = ({ title, products }) => {
   return (
     <>
-      { products.length !== 0 ? <section id={title.toLowerCase()} className='y-m lr-margin'>
+      { products.length !== 0 ? <section id={title.toLowerCase()} className='mt-1 lr-margin'>
         <Container className='card bg-ws lr-padding'>
           <h2 className='title mx-auto y-p'>
             <Link to={title}>

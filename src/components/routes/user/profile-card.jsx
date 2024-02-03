@@ -8,12 +8,13 @@ import { useState, useContext } from 'react';
 
 import "../seller/s-profile/s-profile.styles.scss"
 
-export const UserProfileCard = ({ name, phone, address, imageUrl }) => {
+export const UserProfileCard = ({ bio, name, phone, address, imageUrl }) => {
 
   let blankAvi = "https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
 
   const { showLoading, hideLoading } = useLoading();
   const [inputFields, setInputFields] = useState({
+    bio: bio || '',
     name: name || '',
     phone: phone || '',
     address: address || '',
@@ -95,7 +96,7 @@ export const UserProfileCard = ({ name, phone, address, imageUrl }) => {
             />
           </Col> 
           
-          <div className="p-1">
+          <div className="p-1 mx-auto col-md-10">
             <div className="image-upload">
               <div className="choose-file">
 	              <input 
@@ -129,6 +130,20 @@ export const UserProfileCard = ({ name, phone, address, imageUrl }) => {
                     onChange={(e) => handleInputChange('name', e.target.value)}
                   />
                   <span onClick={() => handleEditInfo('displayName', inputFields.name)} className="v-center">
+                    <MdCloudDone size={20}/>
+                  </span>
+                </ListGroup.Item>
+
+                <ListGroup.Item className="d-flex justify-content-between">
+                  <span className="fs-smaller v-center">
+                    <b className="s-bold">Bio</b>
+                  </span>
+                  <input type="text" 
+                    className="form-control m-1" 
+                    value={inputFields.bio}
+                    onChange={(e) => handleInputChange('bankAcct', e.target.value)}
+                  />
+                  <span onClick={() => handleEditInfo('bankAcct', inputFields.bio)} className="v-center">
                     <MdCloudDone size={20}/>
                   </span>
                 </ListGroup.Item>

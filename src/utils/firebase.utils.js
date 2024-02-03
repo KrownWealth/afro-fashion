@@ -16,6 +16,7 @@ import {
   getFirestore,
   getDocs,
   query,
+  where,
 } from 'firebase/firestore'
 
 import { firebaseConfig } from './config';
@@ -143,7 +144,7 @@ export const getItemsBySellers = async () => {
         const { seller, ...restOfItem } = item;
 
         if (seller) {
-          const sellerKey = seller.toLowerCase(); // Ensure consistent case
+          const sellerKey = seller.toLowerCase();
 
           if (!itemsBySeller[sellerKey]) {
             itemsBySeller[sellerKey] = {};
@@ -158,4 +159,29 @@ export const getItemsBySellers = async () => {
   });
 
   return itemsBySeller;
+};
+
+// Get snapshot and document data with seller query
+export const getSellerInfo = async (seller) => {
+  const sellerName = `${seller}`
+  const sellersQuery = query(
+    collection(db, "sellers"),
+    where("displayName", "==", sellerName),
+  );
+  const sellersSnapshot = await getDocs(sellersQuery);
+
+  let sellerInfo = null;
+
+  sellersSnapshot.forEach((sellerDoc) => {
+    const sellerData = sellerDoc.data();
+    sellerInfo = {
+      bio: sellerData.bio,
+      phone: sellerData.phone,
+      address: sellerData.address,
+      imageUrl: sellerData.imageUrl,
+      // add more properties if needed
+    };
+  });
+
+  return sellerInfo;
 };

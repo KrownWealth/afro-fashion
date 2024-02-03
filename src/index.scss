@@ -79,6 +79,7 @@ a {
   margin-left: 5px;
 }
 
+  // flex and justify content styles
 .flex-just-center {
   display: flex;
   justify-content: center;
@@ -89,10 +90,21 @@ a {
   justify-content: space-between;
 }
 
+.flex-space-around {
+  display: flex;
+  justify-content: space-around;
+}
+
 .block {
   display: block;
+  // used in brand.route
+  width: 100%;
 }
   
+.w-75 {
+  width: 75%;
+}
+
 .bl-ordered {
   // border light 
   border: 1px solid #909090;

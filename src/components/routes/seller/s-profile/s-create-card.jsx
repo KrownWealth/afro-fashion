@@ -34,7 +34,7 @@ export const SellerCreateCard = () => {
     return `${timestamp}-${randomNumber}`;
   }
 
-  const brand = currentUser?.displayName;
+  const brand = currentUser?.brandName || currentUser?.displayName;
   const path = `/seller/${brand.toLowerCase()}`;
   const id = generateRandomId();
 
@@ -69,7 +69,8 @@ export const SellerCreateCard = () => {
       showLoading();
       await addSellerItems(category, itemsToAdd);
 
-      addAlert("success", "You've successfully created a product!");
+      addAlert("success", 
+      'Product created! This action might up to take 15 minutes to propogate as we verify product authenticity');
 
       setIsSubmitting(false);
       hideLoading();
@@ -89,8 +90,15 @@ export const SellerCreateCard = () => {
 
         <div className='card-body'>
           <form onSubmit={handleSubmit} action=''>
+            <div className='card bg-white p-2 mb-2 fs-smaller'>
+              <button disabled className='btn btn-warning mb-4'>This warning is for <b>NEW</b> sellers!</button> 
+              <p>Before creating a Product, kindly update your <b>Brand Name</b> to a unique name to avoid conflicts with existing sellers.</p>
+              <p>Your Brand Name will be used throughout this app as an identifier for all your products. It is important to keep it consistent.</p>
+              <p><b>Note:</b> If you already have conflicts with your brand name or products with different brand names, contact <b>admin</b> to resolve the issue!</p>
+            </div>
+
             <select onChange={handleChange} name='category'
-              className="form-select centered-dropdown w-50">
+              className="form-select centered-dropdown w-75">
               <option>Select category</option>
               <option value="kids">Kids</option>
               <option value="women">Women</option>

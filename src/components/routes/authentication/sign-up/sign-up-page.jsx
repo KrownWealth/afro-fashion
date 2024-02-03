@@ -59,7 +59,7 @@ const SignUp = () => {
 
     try {      
       showLoading();
-      await customCreateUserWithEmail(email, password, displayName, phone, userType);
+      await customCreateUserWithEmail(email, password, displayName.toLowerCase(), phone, userType);
       
       if (userType === "seller"){
         resetFormFields();

@@ -9,6 +9,7 @@ import { useState, useContext } from 'react';
 import "./s-profile.styles.scss";
 
 export const SellerProfileCard = ({ 
+  bio,
   sellerName, 
   phone, 
   address, 
@@ -21,6 +22,7 @@ export const SellerProfileCard = ({
 
   const { showLoading, hideLoading } = useLoading();
   const [ inputFields, setInputFields ] = useState({
+    bio: bio || '',
     phone: phone || '',
     name: sellerName || '',
     address: address || '',
@@ -105,7 +107,7 @@ export const SellerProfileCard = ({
             />
           </Col>
           
-          <div className="p-1">
+          <div className="p-1 mx-auto col-md-10">
             <div className="image-upload">
               <div className="choose-file">
 	              <input 
@@ -139,6 +141,20 @@ export const SellerProfileCard = ({
                     onChange={(e) => handleInputChange('name', e.target.value)}
                   />
                   <span onClick={() => handleEditInfo('brandName', inputFields.name)} className="v-center">
+                    <MdCloudDone size={20}/>
+                  </span>
+                </ListGroup.Item>
+
+                <ListGroup.Item className="d-flex justify-content-between">
+                  <span className="fs-smaller v-center">
+                    <b className="s-bold">Bio</b>
+                  </span>
+                  <input type="text" 
+                    className="form-control m-1" 
+                    value={inputFields.bio}
+                    onChange={(e) => handleInputChange('bankAcct', e.target.value)}
+                  />
+                  <span onClick={() => handleEditInfo('bankAcct', inputFields.bio)} className="v-center">
                     <MdCloudDone size={20}/>
                   </span>
                 </ListGroup.Item>

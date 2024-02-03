@@ -14,7 +14,7 @@ const Category = () => {
   const { category } = useParams(); 
   const { showLoading, hideLoading } = useLoading(); 
   const { categoriesMap } = useContext(CategoriesContext);
-  const [products, setProducts] = useState(categoriesMap[category]);
+  const [ products, setProducts ] = useState(categoriesMap[category]);
 
   useEffect(() => {
     showLoading();

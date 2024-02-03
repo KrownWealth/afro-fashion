@@ -63,15 +63,17 @@ body{
 .image-upload {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 
   .choose-file {
     width: 75%;
+    margin-bottom: 10px;
   }
 }
 
 .profile-image {
   width: 100%;
-  max-width: 250px;
+  max-width: 260px;
   height: auto;
   margin: 0 auto;
 }

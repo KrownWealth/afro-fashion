@@ -17,17 +17,17 @@ const Collections = () => {
             hasProducts = true;
             
             return (
-              <>
-                <CollectionPreview key={title} title={title} products={products} />
-                <div className='lg-div'></div>
-              </>
+              <CollectionPreview key={title} title={title} products={products} />
             )
           }
 
           return null;
-        })}
+      })}
 
-        {!hasProducts && (
+      { hasProducts && <div className='lg-div'></div> }
+
+      {
+        !hasProducts && (
         <div className="mt-1 p-2 card container bg-ws lg-div">
           <hr className='-mt'/>
           <p className='mx-auto fs-large'>No product available now... Try again later</p>

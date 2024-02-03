@@ -12,7 +12,13 @@ const ProductCard = ({ product }) => {
   const { addItemtoCart } = useContext(CartContext);
   const [productInfo, setProductInfo] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  const setPrice = (price) => {
+    const numericPrice = parseFloat(price);
 
+    const roundedPrice = numericPrice.toFixed(2);
+    return roundedPrice.includes('.') ? roundedPrice : `${roundedPrice}.00`;
+  };
   const { name, price, info, seller, imageUrls, imageUrl } = product;
 
   const toggleProductInfo = () => setProductInfo(!productInfo);
@@ -56,7 +62,7 @@ const ProductCard = ({ product }) => {
           <span className='info-button' onClick={toggleProductInfo}><FaCircleInfo /></span>
         </div>
         <span className='product-name'>{name}</span>
-        <span className='product-price'>${price}</span>
+        <span className='product-price'>${setPrice(price)}</span>
       </div>
 
       {productInfo && (

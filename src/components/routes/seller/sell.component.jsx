@@ -4,7 +4,6 @@ import { SellerCreateCard } from "./s-profile/s-create-card";
 import { SellerProducts } from "./s-profile/s-products-card";
 import Button from "../../buttons/button.component";
 import { useState, useContext } from 'react';
-import { Container } from "react-bootstrap";
 
 import "./seller.styles.scss";
 
@@ -15,7 +14,7 @@ const Seller = () => {
   const [ createItem, setCreateItem ] = useState(false);
   const [ editItem, setEditItem]  = useState(false);
   const { currentUser } = useContext(UserContext);
-  const { displayName, brandName, phone, address, bankAcct, imageUrl } = currentUser
+  const {  bio, brandName, displayName, phone, address, bankAcct, imageUrl } = currentUser
 
   const toggleCreateItem = () => {
     setCreateItem(!createItem);
@@ -27,8 +26,8 @@ const Seller = () => {
 
    return (
     <>
-     <Container className="mt-2">
-        <div className="card p-1 col-md-6 mx-auto bg-gray">
+      <div className="card container p-2 bg-trans">
+        <div className="card col-md-6 mx-auto bg-gray">
           <div className="card-title mt-3 mb-3">
             <span className="-welcome">Welcome, {displayName}</span>
             <span className="-date">{today}</span>
@@ -36,6 +35,7 @@ const Seller = () => {
           <section>
             <SellerProfileCard 
               sellerName={brandName || displayName} 
+              bio={bio}
               phone={phone} 
               address={address} 
               bankAcct={bankAcct}
@@ -58,7 +58,7 @@ const Seller = () => {
           </section>
         </div>
       <div className="lg-div"></div>
-     </Container>
+     </div>
     </>
   )
 }

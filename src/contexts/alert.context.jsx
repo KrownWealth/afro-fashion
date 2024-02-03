@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { Alert, Container, Row, Col, Button } from 'react-bootstrap';
 
 const AlertContext = createContext();
@@ -61,23 +61,20 @@ export const AlertProvider = ({ children }) => {
                   if (alert.onNo) alert.onNo();
                 }}
                 dismissible={!alert.autoClose}
-                className='flex-just-center'
               >
-                <div style={{ display: "block"}}>
+                <div className='flex-just-center'>
                   {alert.message}
                 </div>
-                <div>
-                  {alert.onYes && alert.onNo && (
-                    <div style={{ display: "flex", justifyContent: "space-between"}} className='p-1'>
-                      <Button variant="success" onClick={() => alert.onYes()}>
-                        Yes
-                      </Button>{' '}
-                      <Button variant="danger" onClick={() => alert.onNo()}>
-                        No
-                      </Button>  
+                {alert.onYes && alert.onNo && (
+                  <div className="flex-space-bet">
+                    <Button variant="success" onClick={() => alert.onYes()}>
+                      Yes
+                    </Button>{' '}
+                    <Button variant="danger" onClick={() => alert.onNo()}>
+                      No
+                    </Button>  
                   </div>
-                  )}
-                </div> 
+                )}
               </Alert>
             ))}
           </Col>

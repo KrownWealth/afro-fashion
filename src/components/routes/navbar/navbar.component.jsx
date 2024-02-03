@@ -16,10 +16,10 @@ import './navbar.styles.scss'
 
 const NavBarComponent = () => {
   const navigate = useNavigate();
-  const { addAutoCloseAlert } = useAlert();
   const { isCartOpen } = useContext(CartContext);
   const { currentUser } = useContext(UserContext);
   const [ cartOpen, setCartOpen ] = useState(false);
+  const { addAutoCloseAlert, addOptionsAlert } = useAlert();
 
   const authIconStyle = {
     backgroundColor: currentUser ? 'green' : 'yellow',
@@ -32,10 +32,22 @@ const NavBarComponent = () => {
 
   const handleSignOut = (event) => {
     event.preventDefault();
-    addAutoCloseAlert("warning", `You're now signed out! see you soon 🤗`)
 
-    SignOutUser();
-    navigate('/auth')
+    const handleYes = () => {
+      SignOutUser();
+      addAutoCloseAlert("success", `You are now signed out! see you soon  🤗`)
+      navigate('/auth')
+    };
+  
+    const handleNo = () => {
+      addAutoCloseAlert("warning", 'Ok! you are still signed in... 🤗');
+    };
+    
+    addOptionsAlert(
+      'warning',
+      'Are you signing out?',
+      handleYes, handleNo
+    );
   }
 
   return (

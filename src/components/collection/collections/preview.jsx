@@ -11,8 +11,8 @@ const CollectionPreview = ({ title, products }) => {
   return (
     <> 
       { products.length !== 0 ?  
-        <section id={title.toLowerCase()} className='y-m lr-margin'>
-          <Container className='card category-preview bg-ws y-m'>
+        <section id={title.toLowerCase()} className='mt-2 lr-margin'>
+          <Container className='card category-preview bg-ws'>
             <h2 className='title'>
               <Link to={title}>
                 <span className='bg-gw p-2'>

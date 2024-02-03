@@ -1,7 +1,6 @@
 import { UserContext } from "../../../contexts/user.context";
 import Button from "../../buttons/button.component";
 import { useState, useContext } from 'react';
-import { Container } from "react-bootstrap";
 import {  UserProfileCard } from "./profile-card";
 
 import "../seller/seller.styles.scss";
@@ -13,7 +12,7 @@ const UserProfile = () => {
   const [ createItem, setCreateItem ] = useState(false);
   const [ editItem, setEditItem]  = useState(false);
   const { currentUser } = useContext(UserContext);
-  const { displayName, email, phone, address, imageUrl } = currentUser
+  const { bio, displayName, email, phone, address, imageUrl } = currentUser
 
   const toggleCreateItem = () => {
     setCreateItem(!createItem);
@@ -25,14 +24,20 @@ const UserProfile = () => {
 
    return (
     <>
-     <Container className="mt-2">
-        <div className="card p-1 col-md-6 mx-auto bg-gray">
+      <div className="card container p-2 bg-trans">
+        <div className="card col-md-6 mx-auto bg-gray">
           <div className="card-title mt-3 mb-3">
             <span className="-welcome">Welcome, {displayName}</span>
             <span className="-date">{today}</span>
           </div>
           <section>
-            <UserProfileCard name={displayName} email={email} phone={phone} address={address} imageUrl={imageUrl}/>
+            <UserProfileCard 
+              bio={bio}
+              name={displayName} 
+              email={email} 
+              phone={phone} 
+              address={address} 
+              imageUrl={imageUrl}/>
           </section>
           <section id="upload">
             <Button onClick={toggleCreateItem}>
@@ -50,7 +55,7 @@ const UserProfile = () => {
           </section>
         </div>
       <div className="lg-div"></div>
-     </Container>
+     </div>
     </>
   )
 }

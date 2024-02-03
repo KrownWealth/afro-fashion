@@ -16,11 +16,11 @@ import './navbar.styles.scss'
 
 const MobileNavBar = () => {
   const navigate = useNavigate();
-  const { addAutoCloseAlert } = useAlert();
   const { currentUser } = useContext(UserContext);
   const [ isBurger, setBurger ] = useState(false);
   const [ cartOpen, setCartOpen ] = useState(false);
   const [showSideNav, setShowSideNav] = useState(false);
+  const { addAutoCloseAlert, addOptionsAlert } = useAlert();
   
   const authIconStyle = {
     backgroundColor: currentUser ? 'green' : 'yellow',
@@ -53,10 +53,22 @@ const MobileNavBar = () => {
 
   const handleSignOut = (event) => {
     event.preventDefault();
-    addAutoCloseAlert("warning", `You're now signed out! see you soon 🤗`)
-
-    SignOutUser();
-    navigate('/auth')
+  
+    const handleYes = () => {
+      SignOutUser();
+      addAutoCloseAlert("success", `You are now signed out! see you soon  🤗`)
+      navigate('/auth')
+    };
+  
+    const handleNo = () => {
+      addAutoCloseAlert("warning", 'Ok! you are still signed in... 🤗');
+    };
+    
+    addOptionsAlert(
+      'warning',
+      'Are you signing out?',
+      handleYes, handleNo
+    );
   }
 
   return (
