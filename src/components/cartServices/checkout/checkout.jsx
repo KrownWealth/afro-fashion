@@ -11,7 +11,7 @@ const CheckoutContent = ({ cartItem }) => {
   <>
     <tr className='align-middle'>
       <td className='checkout-items-img'>
-        <img
+        <img loading="lazy"
           src={imageUrl || imageUrls}
           alt={name}
         />

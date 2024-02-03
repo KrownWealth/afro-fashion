@@ -85,12 +85,12 @@ export const UserProfileCard = ({ name, phone, address, imageUrl }) => {
   return (
     <Container className="no-padding-container">            
       <div className="card container each-sell-container">
-        <div className="p-3">
+        <div className="p-1">
         <Row className="mx-auto">
-          <Col className="flex-just-center mb-2 avatar"> 
-            <img
+          <Col className="flex-just-center mt-2 mb-2 avatar"> 
+            <img loading="lazy"
               src={imageUrl || blankAvi}
-              className="rounded-circle flex-just-center"
+              className="rounded-circle profile-imsge"
               alt="profile avatar"
             />
           </Col> 
@@ -106,7 +106,7 @@ export const UserProfileCard = ({ name, phone, address, imageUrl }) => {
                   type="file"
                 />
 	            </div>
-              <span onClick={() => handleImgUpload(imgFile)}>
+              <span className="mr-1 pr-1" onClick={() => handleImgUpload(imgFile)}>
                 <MdUpload size={25}/>
               </span>
             </div>

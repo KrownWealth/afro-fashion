@@ -32,7 +32,7 @@ const NavBarComponent = () => {
 
   const handleSignOut = (event) => {
     event.preventDefault();
-    addAutoCloseAlert("warning", 'You are signed out! see you again :(')
+    addAutoCloseAlert("warning", `You're now signed out! see you soon 🤗`)
 
     SignOutUser();
     navigate('/auth')

@@ -95,12 +95,12 @@ export const SellerProfileCard = ({
   return (
     <Container className="no-padding-container">            
       <div className="card container each-sell-container">
-        <div className="p-2">
+        <div className="p-1">
         <Row className="mx-auto">
-          <Col className="flex-just-center mb-2 avatar"> 
-            <img
+          <Col className="flex-just-center mt-2 mb-2 avatar"> 
+            <img loading="lazy"
               src={imageUrl || blankAvi}
-              className="rounded-circle"
+              className="rounded-circle profile-image"
               alt="profile avatar"
             />
           </Col>

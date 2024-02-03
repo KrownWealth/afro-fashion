@@ -35,7 +35,7 @@ const SignInForm = () => {
       await signInWithEmail(email, password);
 
       resetFormFields();
-      addAlert("success", 'Welcome back to Afro Fashion!  :) ')
+      addAlert("success", 'Welcome back to Afro Fashion! 😊 ')
       
       hideLoading();
       navigate(path);

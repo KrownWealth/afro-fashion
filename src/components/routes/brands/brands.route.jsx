@@ -8,8 +8,8 @@ import { BrandContext } from '../../../contexts/brand.context';
 const BrandCollection = () => {
   const { seller } = useParams();
   const { brandsMap } = useContext(BrandContext);
-  const { showLoading, hideLoading } = useLoading(); 
-  const [brands, setBrands] = useState(brandsMap[seller])
+  const { showLoading, hideLoading } = useLoading();
+  const [ brands, setBrands ] = useState(brandsMap[seller])
   
   useEffect(() => {
     showLoading();
@@ -24,10 +24,13 @@ const BrandCollection = () => {
         <h1 className='mt-2 bg-gw p-2 mx-auto'>
           <span>{seller?.toUpperCase()}</span>
         </h1>
-        <h6 className='mx-auto'>
 
-        </h6>
-        <h6>{seller?.contactInfo}</h6>
+        <div className='mt-3 fs-smaller'>
+          <span className='block'><b>Bio: &nbsp;</b> {seller?.bio || `Deals on all kinds of fashion stuff`}</span>
+          <span className='block'><b>Phone: &nbsp;</b> {seller?.phone}</span>
+          <span className='block'><b>Location: &nbsp;</b> {seller?.address}</span>
+        </div>
+
         {brands && Object.keys(brands).length > 0 ? (
           <div className='col-md-3 mb-2'>
             {Object.entries(brands).map(([category, categoryProducts]) => (

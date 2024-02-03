@@ -6,7 +6,7 @@ const CartContent = ({ cartItem }) => {
   return (
     <>
       <div className='cart-item-container'>
-        <img 
+        <img loading="lazy" 
           src={imageUrl || imageUrls}
           alt={name}
         />

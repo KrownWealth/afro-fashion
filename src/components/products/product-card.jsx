@@ -34,9 +34,9 @@ const ProductCard = ({ product }) => {
     <div className='product-card-container'>
       <div className='image-container'>
         {imageUrls ? (
-         <img src={Array.isArray(imageUrls) ? imageUrls[currentImageIndex] : imageUrls} alt={name} />
+         <img loading="lazy" src={Array.isArray(imageUrls) ? imageUrls[currentImageIndex] : imageUrls} alt={name} />
         ) : (
-          <img src={imageUrl} alt={name} />
+          <img loading="lazy" src={imageUrl} alt={name} />
         )}
 
         {multipleImages && (
