@@ -41,7 +41,9 @@ const CartDropdown = () => {
             )
           }
 
-          <Link className='cart-link' to='/checkout'>
+          <Link 
+            className='cart-link' 
+            to='/checkout'>
             <Button>Checkout</Button>
           </Link>
         </div>

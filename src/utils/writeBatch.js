@@ -1,4 +1,3 @@
-// seller specific modules and dependencies from writeBatch to firestore
 import { deleteObject, getStorage, getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { collection, doc, getDoc, updateDoc, writeBatch } from "firebase/firestore";
 import { db, firebaseApp } from "./firebase.utils";
@@ -14,9 +13,8 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
     const collDocRef = doc(collectionRef, object.name.toLowerCase());
     batch.set(collDocRef, object);
   });
-
   await batch.commit();
-}
+};
 
 // create items and write images to db collection
 export const addSellerItems = async (category, itemsToAdd) => {
@@ -34,9 +32,7 @@ export const addSellerItems = async (category, itemsToAdd) => {
       batch.update(categoryRef, { items: updatedItems });
       await batch.commit();
 
-    } else {
-      throw new Error("Category document not found");
-    }
+    } else throw new Error("Category document not found");
   } catch (err) {
     console.error('Error during batch.set:', err);
     throw new Error(err.message);
@@ -56,7 +52,6 @@ export const uploadImages = async (imagesArray, itemId) => {
     const imageUrl = await getDownloadURL(imageRef);
     imageUrls.push(imageUrl);
   }
-
   return imageUrls;
 };
 
@@ -85,20 +80,15 @@ export const editSellerItem = async (category, itemId, updatedItem) => {
         if (item.id === itemId) {
           // validate properties in updatedItem before updating
           const { name, price, info } = updatedItem;
-          // you can add additional validation logic as needed
+
           if (name !== undefined && price !== undefined && info !== undefined) {
             return { ...item, name, price, info };
-          } else {
-            throw new Error("Invalid properties in updatedItem");
-          }
-        } else {
-          return item;
-        }
-      });
-
+          } else throw new Error("Invalid properties in updatedItem");
+        } else return item;
+      })
       batch.update(categoryRef, { items: updatedItems });
-      await batch.commit();
 
+      await batch.commit();
     } else {
       throw new Error("Category document not found");
     }
@@ -123,19 +113,14 @@ export const deleteSellerItem = async (category, itemId) => {
       const deletedItem = existingItems.find((item) => item.id === itemId);
 
       if (deletedItem) {
-        // delete images from Firebase Storage
         await deleteImages(itemId, deletedItem.images);
         // update the database by removing the item
         const updatedItems = existingItems.filter((item) => item.id !== itemId);
         batch.update(categoryRef, { items: updatedItems });
 
         await batch.commit();
-      } else {
-        throw new Error(`Item with ID ${itemId} not found in category ${category}`);
-      }
-    } else {
-      throw new Error(`Category document ${category} not found`);
-    }
+      } else throw new Error(`Item with ID ${itemId} not found in category ${category}`);
+    } else throw new Error(`Category document ${category} not found`);
   } catch (err) {
     console.error('Error during batch.update:', err);
     throw new Error(err.message);
@@ -149,7 +134,7 @@ const deleteImages = async (itemId, imageUrls) => {
       const promises = imageUrls.map(async (imageUrl) => {
         const imageRef = ref(storage, imageUrl);
         await deleteObject(imageRef);
-      });
+      })
 
       await Promise.all(promises);
     }
@@ -159,11 +144,9 @@ const deleteImages = async (itemId, imageUrls) => {
   }
 };
 
-
 // Add or update seller properties
 export const updateSeller = async (sellerId, inputField, value) => {
   if (!sellerId || !inputField || !value) return;
-
   const collectionId = "sellers";
 
   try {
@@ -184,11 +167,56 @@ export const updateSeller = async (sellerId, inputField, value) => {
 
 // Add or update user properties
 export const updateUser = async (userId, inputField, value) => {
-  
   if (!userId || !inputField || !value) return;
-  
-  await collection('users').doc(userId).set({
-    inputField: value,
-    // add any other user data fields as needed
-  }, { merge: true });
+  const collectionId = "users";
+
+  try {
+    const userRef = doc(collection(db, collectionId), userId);
+    const userDoc = await getDoc(userRef);
+
+    if (userDoc.exists()) {
+      const updateObject = {};
+      updateObject[inputField] = value;
+      
+      await updateDoc(userRef, updateObject);
+    } 
+  } catch (err) {
+    console.error('Failed to update user:', err);
+    throw new Error(err.message);
+  }
 };
+
+// Add or update items and orders to a users saved items
+export const addToSavedItems = async (userId, newItems, docField) => {
+  if (!userId) return;
+
+  const collectionId = "users";
+  const maxItems = 5;
+
+  try {
+    const userRef = doc(collection(db, collectionId), userId);
+    const userDoc = await getDoc(userRef);
+
+    if (userDoc.exists()) {
+      if (docField === "savedItems"){
+        const existingItems = userDoc.data().savedItems || [];
+        const itemsArray = Array.isArray(newItems) ? newItems : [newItems]; 
+        const updatedItems = [...existingItems, ...itemsArray];
+        const trimmedItems = updatedItems.slice(-maxItems);
+
+        await updateDoc(userRef, { savedItems: trimmedItems });
+      } else
+      if (docField === "orders") {
+        const existingItems = userDoc.data().orders || [];
+        const itemsArray = Array.isArray(newItems) ? newItems : [newItems];
+        const updatedItems = [...existingItems, ...itemsArray];
+        const trimmedItems = updatedItems.slice(-maxItems);
+
+        await updateDoc(userRef, { orders: trimmedItems });
+      }
+    } else console.error('User document not found for userId:', userId);
+  } catch (err) {
+    console.error('Failed to update user doc:', err);
+    throw new Error(err.message);
+  }
+}

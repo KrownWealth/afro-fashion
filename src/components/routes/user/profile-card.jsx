@@ -29,13 +29,6 @@ export const UserProfileCard = ({ bio, name, phone, address, imageUrl }) => {
     setInputFields({ ...inputFields, [field]: value });
   };
 
-  const handleImgChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setImgFile(file);
-    } else setImgFile(image)
-  };
-
   const handleEditInfo = async (inputField, value) => {
     if (!inputField || !value) {
       addAutoCloseAlert("warning", `Empty ${inputField} field`)
@@ -55,6 +48,13 @@ export const UserProfileCard = ({ bio, name, phone, address, imageUrl }) => {
       hideLoading();
     }
   }
+
+  const handleImgChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setImgFile(file);
+    } else setImgFile(image)
+  };
 
   const handleImgUpload = async (imageFile) => {
     if (!imageFile) {
@@ -85,13 +85,13 @@ export const UserProfileCard = ({ bio, name, phone, address, imageUrl }) => {
 
   return (
     <Container className="no-padding-container">            
-      <div className="card container each-sell-container">
+      <div className="card">
         <div className="p-1">
         <Row className="mx-auto">
           <Col className="flex-just-center mt-2 mb-2 avatar"> 
             <img loading="lazy"
               src={imageUrl || blankAvi}
-              className="rounded-circle profile-imsge"
+              className="rounded-circle profile-image"
               alt="profile avatar"
             />
           </Col> 
@@ -107,7 +107,7 @@ export const UserProfileCard = ({ bio, name, phone, address, imageUrl }) => {
                   type="file"
                 />
 	            </div>
-              <span className="mr-1 pr-1" onClick={() => handleImgUpload(imgFile)}>
+              <span onClick={() => handleImgUpload(imgFile)}>
                 <MdUpload size={25}/>
               </span>
             </div>
@@ -141,9 +141,9 @@ export const UserProfileCard = ({ bio, name, phone, address, imageUrl }) => {
                   <input type="text" 
                     className="form-control m-1" 
                     value={inputFields.bio}
-                    onChange={(e) => handleInputChange('bankAcct', e.target.value)}
+                    onChange={(e) => handleInputChange('bio', e.target.value)}
                   />
-                  <span onClick={() => handleEditInfo('bankAcct', inputFields.bio)} className="v-center">
+                  <span onClick={() => handleEditInfo('bio', inputFields.bio)} className="v-center">
                     <MdCloudDone size={20}/>
                   </span>
                 </ListGroup.Item>

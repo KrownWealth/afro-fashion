@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import Page404 from '../../../redirect/404.jsx';
 import CreditsPage from "../credits/credits.jsx";
 import { Route, Routes } from "react-router-dom";
-import Seller from "../seller/sell.component.jsx";
+import Seller from "../seller/seller.component.jsx";
 import { Help } from "../help/help.component.jsx";
 import UserProfile from "../user/user.component.jsx";
 import BrandCollection from '../brands/brands.route.jsx';
@@ -32,10 +32,10 @@ const Home = () => {
         <Route path="shop/*" element={<ShopStore />} />
         <Route path="credits" element={<CreditsPage />} />
         <Route path="checkout" element={<Checkout />} />
-        {userType === 'buyer' ? (
-          <Route path="profile" element={<ProtectedUserRoute element={<UserProfile />} />} />
-        ) : (
+        {userType === 'seller' ? (
           <Route path="profile" element={<ProtectedSellerRoute element={<Seller />} />} />
+        ) : (
+          <Route path="profile" element={<ProtectedUserRoute element={<UserProfile />} />} />
         )}
         <Route
           path="seller/accept-terms"

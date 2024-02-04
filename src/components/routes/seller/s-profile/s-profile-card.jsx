@@ -39,14 +39,7 @@ export const SellerProfileCard = ({
   const handleInputChange = (field, value) => {
     setInputFields({ ...inputFields, [field]: value });
   };
-
-  const handleImgChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setImgFile(file);
-    } else setImgFile(image)
-  };
-
+  
   const handleEditInfo = async (inputField, value) => {
     if (!inputField || !value) {
       addAutoCloseAlert("warning", `Empty ${inputField} field`)
@@ -66,6 +59,14 @@ export const SellerProfileCard = ({
       hideLoading();
     }
   }
+
+  const handleImgChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setImgFile(file);
+    } else setImgFile(image)
+  };
+
 
   const handleImgUpload = async (imageFile) => {
     if (!imageFile) {
@@ -96,7 +97,7 @@ export const SellerProfileCard = ({
 
   return (
     <Container className="no-padding-container">            
-      <div className="card container each-sell-container">
+      <div className="card">
         <div className="p-1">
         <Row className="mx-auto">
           <Col className="flex-just-center mt-2 mb-2 avatar"> 
@@ -152,9 +153,9 @@ export const SellerProfileCard = ({
                   <input type="text" 
                     className="form-control m-1" 
                     value={inputFields.bio}
-                    onChange={(e) => handleInputChange('bankAcct', e.target.value)}
+                    onChange={(e) => handleInputChange('bio', e.target.value)}
                   />
-                  <span onClick={() => handleEditInfo('bankAcct', inputFields.bio)} className="v-center">
+                  <span onClick={() => handleEditInfo('bio', inputFields.bio)} className="v-center">
                     <MdCloudDone size={20}/>
                   </span>
                 </ListGroup.Item>

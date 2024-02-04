@@ -63,7 +63,7 @@ const CartDropdown = () => {
 
         <Link 
           onClick={handleNavDropPostRouting}
-          className='cart-link'
+          className='checkout-btn'
           to='/checkout'>
           <Button>
             Checkout

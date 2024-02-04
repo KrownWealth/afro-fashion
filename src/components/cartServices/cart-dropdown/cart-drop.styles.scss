@@ -10,16 +10,16 @@
 
   .empty-message {
     font-size: 18px;
-    margin: 99.99px auto;
     align-items: center;
+    margin: 99.99px auto;
   }
 
-  .cart-link {
+  .checkout-btn {
     position: relative;
 
     button {
+      bottom: auto;
       margin-top: auto;
-      bottom: -100px;
       font-size: medium;
     }
   }

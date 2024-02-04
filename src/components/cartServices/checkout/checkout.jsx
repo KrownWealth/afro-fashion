@@ -10,14 +10,14 @@ const CheckoutContent = ({ cartItem }) => {
   return (
   <>
     <tr className='align-middle'>
-      <td className='checkout-items-img'>
+      <td className='w-25'>
         <img loading="lazy"
           src={imageUrl || imageUrls}
           alt={name}
         />
       </td>
-      <td className='checkout-name'>{name}</td>
-      <td className='checkout-items-row'>
+      <td className='w-25 fs-smaller'>{name}</td>
+      <td className='w-25 checkout-qty'>
         <span className='decrement' onClick={() => removeItemfromCart(cartItem)}>
           &#10094;
         </span>
@@ -26,7 +26,7 @@ const CheckoutContent = ({ cartItem }) => {
           &#10095;
         </span>
       </td>
-      <td className='checkout-price'>${itemTotal}.00</td>
+      <td className='w-25'>${itemTotal}</td>
     </tr>
   </>   
   )
