@@ -8,6 +8,7 @@
 
   .image-container {
     width: 100%;
+    height: auto;
     position: relative;
 
     img {
@@ -20,10 +21,10 @@
     .chevron-right {
       position: absolute;
       top: 50%;
-      transform: translateY(-50%);
       cursor: pointer;
       font-size: 24px;
       color: white;
+      transform: translateY(-50%);
     }
 
     .chevron-left {

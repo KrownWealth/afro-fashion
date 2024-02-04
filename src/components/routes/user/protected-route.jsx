@@ -8,7 +8,7 @@ const ProtectedUserRoute = ({ element }) => {
 
   // check if the user is authenticated and has the 'buyer' userType
   const isBuyer = currentUser && currentUser?.userType === 'buyer';
-  return isBuyer ? element : <Navigate to="/auth/register" />;
+  return isBuyer ? element : <Navigate to="/auth" />;
 };
 
 export default ProtectedUserRoute;

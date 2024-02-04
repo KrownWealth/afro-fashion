@@ -22,12 +22,11 @@ const CartDropdown = () => {
   }
 
   useEffect(() => {
-  // close the cart dropdown after 10 seconds
     const timeoutId = setTimeout(() => {
       setClose(true);
     }, 9999);
   
-    // Clean up the timeout when the component unmounts or when a new route is clicked
+    // clean up the timeout when the component unmounts or when a new route is clicked
     return () => {
       clearTimeout(timeoutId);
     };

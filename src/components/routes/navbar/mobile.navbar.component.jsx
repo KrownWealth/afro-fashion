@@ -2,11 +2,11 @@
 
 import CartDropdown from "../../cartServices/cart-dropdown/mobile.cart-dropdown";
 import CartIcon from "../../cartServices/cart-icon/cart-icon.components";
+import { Fragment, useContext, useState, useEffect } from "react";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../../contexts/user.context";
 import { SignOutUser } from "../../../utils/firebase.utils";
 import { useAlert } from "../../../contexts/alert.context";
-import { Fragment, useContext, useState } from "react";
 import { LuLogIn, LuUserCheck } from "react-icons/lu";
 import { Container, Navbar } from "react-bootstrap";
 import BurgerMenu from './mobile.navdrop';
@@ -19,9 +19,20 @@ const MobileNavBar = () => {
   const { currentUser } = useContext(UserContext);
   const [ isBurger, setBurger ] = useState(false);
   const [ cartOpen, setCartOpen ] = useState(false);
-  const [showSideNav, setShowSideNav] = useState(false);
+  const [ showSideNav, setShowSideNav ] = useState(false);
   const { addAutoCloseAlert, addOptionsAlert } = useAlert();
   
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setShowSideNav(false);
+    }, 9999);
+  
+    // clean up the timeout when the component unmounts or when a new route is clicked
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [setShowSideNav]);
+
   const authIconStyle = {
     backgroundColor: currentUser ? 'green' : 'yellow',
     borderRadius: '50%',  
@@ -61,7 +72,7 @@ const MobileNavBar = () => {
     };
   
     const handleNo = () => {
-      addAutoCloseAlert("warning", 'Ok! you are still signed in... 🤗');
+      return;
     };
     
     addOptionsAlert(
@@ -85,9 +96,7 @@ const MobileNavBar = () => {
               >
                 <div className="animated-icon1">                      
                   <span></span>
-                
-                  <span></span>
-                      
+                  <span></span>    
                   <span></span>
                 </div>
               </button>
@@ -115,8 +124,7 @@ const MobileNavBar = () => {
                       to='/auth'>
                         <LuLogIn/>
                       </Link>
-                    )
-                  }
+                   )}
                 </div>
               </div>
             </div>
@@ -129,7 +137,6 @@ const MobileNavBar = () => {
             />
           )}
           </div>
-
           {cartOpen && <CartDropdown />}
         </nav>
         {isBurger && <BurgerMenu />}

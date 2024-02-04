@@ -11,8 +11,10 @@ const CheckoutContent = ({ cartItem }) => {
   <>
     <tr className='align-middle'>
       <td className='w-25'>
-        <img loading="lazy"
+        <img 
           src={imageUrl || imageUrls}
+          className='checkout-img'
+          loading="lazy"
           alt={name}
         />
       </td>

@@ -24,7 +24,7 @@ const ProductCard = ({ product }) => {
     const roundedPrice = numericPrice.toFixed(2);
     return roundedPrice.includes('.') ? roundedPrice : `${roundedPrice}.00`;
   };
-  const { name, price, info, seller, imageUrls, imageUrl } = product;
+  const { name, price, info, seller, imageUrls } = product;
 
   const toggleProductInfo = () => setProductInfo(!productInfo);
 
@@ -50,11 +50,7 @@ const ProductCard = ({ product }) => {
   return (
     <div className='product-card-container'>
       <div className='image-container'>
-        {imageUrls ? (
-         <img loading="lazy" src={Array.isArray(imageUrls) ? imageUrls[currentImageIndex] : imageUrls} alt={name} />
-        ) : (
-          <img loading="lazy" src={imageUrl} alt={name} />
-        )}
+        <img loading="lazy" src={Array.isArray(imageUrls) ? imageUrls[currentImageIndex] : imageUrls} alt={name} />
 
         {multipleImages && (
           <>

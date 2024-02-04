@@ -40,7 +40,7 @@ const NavBarComponent = () => {
     };
   
     const handleNo = () => {
-      addAutoCloseAlert("warning", 'Ok! you are still signed in... 🤗');
+      return;
     };
     
     addOptionsAlert(

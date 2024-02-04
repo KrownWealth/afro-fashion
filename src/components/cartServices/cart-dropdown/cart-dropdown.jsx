@@ -42,7 +42,7 @@ const CartDropdown = () => {
           }
 
           <Link 
-            className='cart-link' 
+            className='ccheckout-ntn' 
             to='/checkout'>
             <Button>Checkout</Button>
           </Link>
