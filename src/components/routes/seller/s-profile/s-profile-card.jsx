@@ -97,7 +97,7 @@ export const SellerProfileCard = ({
 
   return (
     <Container className="no-padding-container">            
-      <div className="card">
+      <div className="card container">
         <div className="p-1">
         <Row className="mx-auto">
           <Col className="flex-just-center mt-2 mb-2 avatar"> 
